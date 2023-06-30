@@ -70,7 +70,7 @@ jobs:
       environment-dir: uffizzi
       image: ghcr.io/${{ github.repository }}
       tag: ${{ needs.docker-build-pr.outputs.image-tag }}
-      pr-number: ${{ github.event.number }}
+      pr-number: "pr-1001"
 
 #### MERGE TO MAIN ####
   docker-build-merge:
