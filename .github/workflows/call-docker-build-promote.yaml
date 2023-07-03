@@ -60,7 +60,7 @@ jobs:
     name: Deploy to Uffizzi Test
     if: github.event_name == 'pull_request'
     needs: docker-build-pr
-    uses: UffizziCloud/MostlyDevOps-actions/.github/workflows/reusable-uffizzi.yaml@test_username_password_login
+    uses: UffizziCloud/MostlyDevOps-actions/.github/workflows/reusable-uffizzi.yaml@moklidia_test_oidc
     secrets:
       github-token: ${{ secrets.GITOPS_WORDSMITH_K8S }}
       uffizzi-password: ${{ secrets.UFFIZZI_PASSWORD }}
