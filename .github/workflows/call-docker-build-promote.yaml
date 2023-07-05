@@ -54,7 +54,7 @@ jobs:
       ignore-unfixed: true
 
   deploy-uffizzi:
-    name: Deploy to Uffizzi
+    name: Deploy to Uffizzi Test
     if: github.event_name == 'pull_request'
     needs: docker-build-pr
     uses: UffizziCloud/MostlyDevOps-actions/.github/workflows/reusable-uffizzi.yaml@oidc
