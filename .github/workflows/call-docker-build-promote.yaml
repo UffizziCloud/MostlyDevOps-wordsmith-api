@@ -37,22 +37,6 @@ jobs:
       image-names: |
         ghcr.io/${{ github.repository }}
 
-  scan-pr:
-    name: CVE Scan
-    if: github.event_name == 'pull_request'
-    needs: docker-build-pr
-    permissions: 
-      packages: read
-    uses: UffizziCloud/MostlyDevOps-actions/.github/workflows/reusable-trivy-scan-image.yaml@main
-    secrets:
-      registry-username: ${{ github.actor }}
-      registry-password: ${{ secrets.GITHUB_TOKEN }}
-    with:
-      image: 'ghcr.io/${{ github.repository }}:${{ needs.docker-build-pr.outputs.image-tag }}'
-      exit-code: 1
-      severity: HIGH,CRITICAL
-      ignore-unfixed: true
-
   deploy-uffizzi:
     name: Deploy to Uffizzi
     if: github.event_name == 'pull_request'
@@ -101,3 +85,19 @@ jobs:
       environment-dir: production
       image: ghcr.io/${{ github.repository }}-stable
       tag: ${{ needs.docker-build-merge.outputs.image-tag }}
+
+  scan-pr:
+    name: CVE Scan
+    if: github.event_name == 'push'
+    needs: docker-build-pr
+    permissions:
+      packages: read
+    uses: UffizziCloud/MostlyDevOps-actions/.github/workflows/reusable-trivy-scan-image.yaml@main
+    secrets:
+      registry-username: ${{ github.actor }}
+      registry-password: ${{ secrets.GITHUB_TOKEN }}
+    with:
+      image: 'ghcr.io/${{ github.repository }}:${{ needs.docker-build-pr.outputs.image-tag }}'
+      exit-code: 1
+      severity: HIGH,CRITICAL
+      ignore-unfixed: true
