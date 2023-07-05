@@ -15,6 +15,5 @@ jobs:
     uses: UffizziCloud/MostlyDevOps-actions/.github/workflows/reusable-uffizzi-delete.yaml@oidc
     secrets:
       github-token: ${{ secrets.GITOPS_WORDSMITH_K8S }}
-      uffizzi-password: ${{ secrets.UFFIZZI_PASSWORD }}
     with:
       pr-number: ${{ github.event.number }}
