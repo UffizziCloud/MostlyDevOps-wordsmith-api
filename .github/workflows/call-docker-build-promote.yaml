@@ -41,7 +41,7 @@ jobs:
     name: Deploy to Uffizzi
     if: github.event_name == 'pull_request'
     needs: docker-build-pr
-    uses: UffizziCloud/MostlyDevOps-actions/.github/workflows/reusable-uffizzi.yaml@oidc
+    uses: UffizziCloud/MostlyDevOps-actions/.github/workflows/reusable-uffizzi.yaml@cluster-action
     secrets:
       github-token: ${{ secrets.GITOPS_WORDSMITH_K8S }}
     with:
