@@ -1,5 +1,5 @@
 # Build stage
-FROM --platform=${BUILDPLATFORM} maven:3-amazoncorretto-17 as build
+FROM --platform=${BUILDPLATFORM} maven:3-amazoncorretto-20 as build
 WORKDIR /home/lab
 
 COPY pom.xml .
